@@ -1,2 +1,67 @@
-# mywebtest1.io
-Hello
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>休闲游戏开发者</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        #game-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+        }
+
+        #game-logo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: auto;
+        }
+
+        #mouse-tracker {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: transparent;
+            pointer-events: none;
+            transform-origin: center;
+            animation: scaleAnimation 1s infinite alternate;
+        }
+
+        @keyframes scaleAnimation {
+            from {
+                transform: scale(1);
+            }
+            to {
+                transform: scale(1.2);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <img id="game-logo" src="https://via.placeholder.com/200" alt="Game Logo">
+        <div id="mouse-tracker"></div>
+    </div>
+
+    <script>
+        document.addEventListener('mousemove', (event) => {
+            const mouseX = event.clientX;
+            const mouseY = event.clientY;
+
+            const mouseTracker = document.getElementById('mouse-tracker');
+            mouseTracker.style.left = `${mouseX}px`;
+            mouseTracker.style.top = `${mouseY}px`;
+        });
+    </script>
+</body>
+</html>
