@@ -2,7 +2,7 @@
 <html lang="zh">
 <head>
 <meta charset="UTF-8">
-<title>2024年日历</title>
+<title>龙哥的摸鱼日记</title>
 <style>
    <style>
     table {
@@ -32,7 +32,7 @@
 </style>
 </head>
 <body>
-    <h1>2024年日历</h1>
+    <h1>龙哥的摸鱼日记</h1>
     <div id="currentDate"></div>
     <div id="calendar"></div>
 
@@ -53,7 +53,7 @@
                     } else {
                         const date = new Date(year, month, dayCount);
                         let className = getDayClass(date);
-                        let label = (className === 'holiday') ? '休息' : '上班';
+                        let label = (className === 'holiday') ? '躺平' : '摸鱼';
                         if (isCurrentMonth && dayCount === today.getDate()) {
                             className += ' today';
                         }
