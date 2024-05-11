@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<title>2024年日历</title>
+<style>
+    .weekend { color: red; }
+    .holiday { color: green; }
+    .workday { color: black; }
+    .today { background-color: orange; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 8px; border: 1px solid #ccc; text-align: center; }
+    table.month { margin-bottom: 20px; }
+</style>
+</head>
+<body>
+    <h1>2024年日历</h1>
+    <div id="currentDate"></div>
+    <div id="calendar"></div>
+
+    <script>
+        function createMonthTable(month, year) {
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            const firstDay = new Date(year, month, 1).getDay();
+            const today = new Date();
+            const isCurrentMonth = today.getFullYear() === year && today.getMonth() === month;
+
+            let tableHTML = `<table class="month"><caption>${new Date(year, month).toLocaleString('zh-CN', { month: 'long' })} ${year}</caption><thead><tr><th>周日</th><th>周一</th><th>周二</th><th>周三</th><th>周四</th><th>周五</th><th>周六</th></tr></thead><tbody>`;
+            let dayCount = 1;
+            for (let i = 0; i < 6; i++) { // Maximum of 6 rows
+                let row = '<tr>';
+                for (let j = 0; j < 7; j++) {
+                    if ((i === 0 && j < firstDay) || dayCount > daysInMonth) {
+                        row += '<td></td>';
+                    } else {
+                        const date = new Date(year, month, dayCount);
+                        let className = getDayClass(date);
+                        let label = (className === 'holiday') ? '休息' : '上班';
+                        if (isCurrentMonth && dayCount === today.getDate()) {
+                            className += ' today';
+                        }
+                        row += `<td class="${className}">${dayCount} (${label})</td>`;
+                        dayCount++;
+                    }
+                }
+                row += '</tr>';
+                tableHTML += row;
+                if (dayCount > daysInMonth) break;
+            }
+            tableHTML += '</tbody></table>';
+            return tableHTML;
+        }
+
+        function setupCalendar(year) {
+            let calendarHTML = '';
+            for (let month = 0; month < 12; month++) {
+                calendarHTML += createMonthTable(month, year);
+            }
+            document.getElementById('calendar').innerHTML = calendarHTML;
+        }
+
+        function getDayClass(date) {
+    const baseDate = new Date(2024, 2, 28); // 周期的起始日期是2024年3月28日
+    const msPerDay = 24 * 60 * 60 * 1000;
+    const diffDays = Math.floor((date - baseDate) / msPerDay);
+    const cycleDay = (diffDays % 4); // 每4天一个周期，0和1是休息，2和3是工作
+
+    if (cycleDay === 0 || cycleDay === 1) {
+        return 'holiday'; // 休息天
+    } else {
+        return 'workday'; // 工作天
+    }
+}
+
+        function displayCurrentDate() {
+            const now = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const currentDateStr = now.toLocaleDateString('zh-CN', options);
+            document.getElementById('currentDate').innerText = `今天是 ${currentDateStr}`;
+        }
+
+        displayCurrentDate();
+        setupCalendar(2024);
+    </script>
+</body>
+</html>
