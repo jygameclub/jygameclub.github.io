@@ -4,13 +4,31 @@
 <meta charset="UTF-8">
 <title>2024年日历</title>
 <style>
-    .weekend { color: red; }
-    .holiday { color: green; }
-    .workday { color: black; }
-    .today { background-color: orange; }
-    table { width: 100%; border-collapse: collapse; }
-    th, td { padding: 8px; border: 1px solid #ccc; text-align: center; }
-    table.month { margin-bottom: 20px; }
+   <style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th, td {
+        padding: 10px;
+        border: 1px solid #dddddd;
+        text-align: center;
+    }
+    .weekend {
+        color: red;
+    }
+    .holiday {
+        background-color: green; /* 休息日 */
+    }
+    .workday {
+        background-color: orange; /* 上班日 */
+    }
+    .today {
+        background-color: blue; /* 今天的日期 */
+        color: white;
+    }
+</style>
+
 </style>
 </head>
 <body>
@@ -53,7 +71,7 @@
 
         function setupCalendar(year) {
             let calendarHTML = '';
-            for (let month = 0; month < 12; month++) {
+            for (let month = 4; month < 12; month++) {
                 calendarHTML += createMonthTable(month, year);
             }
             document.getElementById('calendar').innerHTML = calendarHTML;
