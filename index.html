@@ -1,67 +1,113 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>休闲游戏开发者</title>
+    <title>杨辉宏 - Unity 游戏开发工程师</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f0f0f0;
-            margin: 0;
-            overflow: hidden;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px auto;
+            max-width: 800px;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-
-        #game-container {
-            position: relative;
-            width: 100vw;
-            height: 100vh;
+        h1, h2 {
+            color: #333;
         }
-
-        #game-logo {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 200px;
-            height: auto;
+        .contact {
+            margin-bottom: 20px;
         }
-
-        #mouse-tracker {
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            background-color: transparent;
-            pointer-events: none;
-            transform-origin: center;
-            animation: scaleAnimation 1s infinite alternate;
+        .contact p {
+            margin: 5px 0;
         }
-
-        @keyframes scaleAnimation {
-            from {
-                transform: scale(1);
-            }
-            to {
-                transform: scale(1.2);
-            }
+        .section {
+            margin-bottom: 20px;
+        }
+        .section h2 {
+            border-bottom: 2px solid #333;
+            padding-bottom: 5px;
+        }
+        .section ul {
+            list-style: none;
+            padding: 0;
+        }
+        .section ul li {
+            margin-bottom: 10px;
+        }
+        .project-link a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+        .project-link a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-    <div id="game-container">
-        <img id="game-logo" src="https://via.placeholder.com/200" alt="Game Logo">
-        <div id="mouse-tracker"></div>
+    <h1>Unity 游戏开发   - 杨辉宏</h1>
+    <div class="contact">
+        <p><strong>姓名：</strong>杨辉宏</p>
+        <p><strong>性别：</strong>男</p>
+        <p><strong>年龄：</strong>33岁</p>
+        <p><strong>联系电话：</strong>+86 13657310008</p>
+        <p><strong>邮箱：</strong>86762595@qq.com</p>
+        <p><strong>在线简历地址：</strong>jygameclub.github.io</p>
+
+        <p><strong>语言能力：</strong>只会中文沟通，目前其他语言沟通困难</p>
     </div>
-
-    <script>
-        document.addEventListener('mousemove', (event) => {
-            const mouseX = event.clientX;
-            const mouseY = event.clientY;
-
-            const mouseTracker = document.getElementById('mouse-tracker');
-            mouseTracker.style.left = `${mouseX}px`;
-            mouseTracker.style.top = `${mouseY}px`;
-        });
-    </script>
+    <div class="section">
+        <h2>个人优势</h2>
+        <ul>
+            <li>丰富的三消、休闲、卡牌游戏开发经验，具有成熟的三消项目经验。</li>
+            <li>熟练使用 Unity 和 C#，灵活使用 ChatGPT、Java、Python 等语言（掌握基础）。</li>
+        </ul>
+    </div>
+    <div class="section">
+        <h2>工作经历</h2>
+        <ul>
+            <li>
+                <strong>长沙开迪科技有限公司</strong>（2022-2024）
+                <ul>
+                    <li>独立完成三消、小丑纸牌游戏开发。</li>
+                </ul>
+            </li>
+            <li>
+                <strong>广州大锤科技有限公司</strong>（2020-2022）
+                <ul>
+                    <li>独立完成三消、三峰纸牌游戏开发。</li>
+                    <li class="project-link">项目地址：<a href="https://www.qimai.cn/app/baseinfo/appid/1596041161/country/us" target="_blank">查看项目</a></li>
+                </ul>
+            </li>
+            <li>
+                <strong>深圳市赤雨科技有限公司</strong>（Unity游戏开发工程师，2016-2019）
+                <ul>
+                    <li>独立完成三消与泡泡龙类游戏开发、上线与运营全过程。</li>
+                    <li>负责UI框架搭建、运营活动开发、核心玩法实现、关卡编辑器开发、多语言支持、Dotween动画等。</li>
+                    <li>对接广告与支付功能，日志统计分析（FB/Google）以及SDK集成。</li>
+                    <li>业绩：项目成功上线并盈利，月流水达100w。</li>
+                    <li class="project-link">项目地址：<a href="https://www.qimai.cn/app/baseinfo/appid/1317716560/country/cn" target="_blank">查看项目</a></li>
+                </ul>
+            </li>
+            <li>
+                <strong>广州银汉科技有限公司</strong>（平台组开发工程师，2014.08-2015.12）
+                <ul>
+                    <li>使用Python和Java编写平台逻辑与业务逻辑。</li>
+                    <li>维护自动化平台，处理合区功能及后台管理平台开发。</li>
+                    <li>参与项目：《游龙英雄》、《时空猎人》。</li>
+                    <li>业绩：平台稳定运行，确保项目正常运营。</li>
+                    <li class="project-link">项目地址：<a href="https://www.qimai.cn/app/rank/appid/593369632/country/cn" target="_blank">查看项目</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="section">
+        <h2>教育经历</h2>
+        <p><strong>湖南湘潭职业技术学院</strong>（2009-2012）</p>
+        <p>软件技术专业</p>
+    </div>
 </body>
 </html>
