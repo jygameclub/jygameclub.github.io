@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "810524014979",
+    "project_id": "unity-fortune-tiger",
+    "storage_bucket": "unity-fortune-tiger.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:810524014979:android:38cf5c01b0091075e01eb6",
+        "android_client_info": {
+          "package_name": "com.UnityFeiwin.FortuneTiger"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAea1dbDs7YLNeSfIp7GCcWT3c9JMHKJpI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

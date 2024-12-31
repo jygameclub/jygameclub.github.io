@@ -1,0 +1,3 @@
+unityload.js 替换JS目录 文件中 http://localhost:8081/这个地址需要配置
+AssetBundleLoader.cs  这个unity中的代码
+目前都有log方便调试，等确认没问题了可以再注释

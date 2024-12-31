@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <script src="//d2wy8f7a9ursnm.cloudfront.net/v7/bugsnag.min.js"></script>
+    <script type="module">
+      import BugsnagPerformance from "//d2wy8f7a9ursnm.cloudfront.net/v1/bugsnag-performance.min.js";
+    let key = "efc06c702fa79ed9770afd841784e956"
+      Bugsnag.start({ apiKey:  key});
+      BugsnagPerformance.start({ apiKey: key });
+    </script>
+
+    <script src="ServiceWorker.js?v4.4.0"></script>
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Fortune Tiger</title>
+    <link rel="shortcut icon" href="TemplateData/favicon.ico" />
+    <link rel="stylesheet" href="TemplateData/style.css" />
+</head>
+
+<body style="background-color: black; overflow: hidden">
+    <div class="game_shell">
+        <section class="loadingScreen" id="loadingScreen">
+            <img src="./TemplateData/NewLoadingAssets/reelRiches.png"
+                 alt="Reel Riches"
+                 class="reelRiches" />
+            <div class="footer">
+                <img id="pinLoader"
+                     src="./TemplateData/handle.png"
+                     alt="Loading percentage"
+                     id="pinLoader" />
+                <div class="loadingWrapper" id="loadingWrapper">
+                    <div class="loadingBg">
+                        <div class="container" id="container">
+                            <div class="bar"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bubble" id="bubble">
+                    <img src="./TemplateData/NewLoadingAssets/percentageBubble.png"
+                         alt="Loading percentage" />
+                    <span class="percentage" id="percentage"></span>
+                </div>
+                <img src="./TemplateData/NewLoadingAssets/startGame.png"
+                     alt="Downloading..."
+                     id="startOrDownloading" />
+                <p id="downloadingText">
+                    <span id="downloadingResText">Initializing Resources</span>
+                    <span id="downloadProgress">
+                        <span id="downloadedValue"></span>
+                        <span id="downloadTotal"></span>
+                    </span>
+                </p>
+            </div>
+        </section>
+
+        <div class="game-canvas" style="z-index: 1">
+            <canvas id="unity-canvas"
+                    width="auto"
+                    height="auto"
+                    tabindex="-1"></canvas>
+        </div>
+        <div id="prompt-holder" style="opacity: 0">
+            <div id="prompt-container" class="">
+                <div class="screen_compat">
+                    <div class="screen_safe_area">
+                        <div id="content-box">
+                            <div id="content-holder">
+                                <span id="prompt-title"></span>
+                                <span id="prompt-msg"></span>
+                                <span id="prompt-code"></span>
+                                <div id="error-btn">
+                                    <p style="
+                        width: 100%;
+                        font-size: medium;
+                        font-family: msgboxMsgFont;
+                      ">
+                                        Reload
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="landscape" class="check-landscape">
+        <div style="
+          background-color: #ffffff;
+          opacity: 0.95;
+          height: 100%;
+          width: 100%;
+          position: absolute;
+        "></div>
+        <div id="rotate-items" class="rotate-items">
+            <img src="TemplateData/rotate.png" class="rotate-img" />
+            <p class="rotate-text">
+                Please switch back to landscape mode to continue the game
+            </p>
+        </div>
+    </div>
+    <div id="version-container" class="version">
+        <span id="version-text"></span>
+    </div>
+    <div id="overlay"></div>
+    <script></script>
+</body>
+
+<script src="JS/variable.js"></script>
+<script src="JS/recharge.js"></script>
+<script src="JS/bugsnag.js"></script>
+
+<script src="JS/touch.js"></script>
+<script src="JS/sw.js"></script>
+<script src="JS/unityload.js"></script>
+<script src="JS/initializeUnity.js"></script>
+
+
+<!-- <script src="JS/sw.js"></script> -->
+
+<script type="module">
+    window.addEventListener("load", function () {
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker
+          .register("ServiceWorker.js")
+          .then(function (registration) {
+            console.log(
+              "Service Worker registered with scope:",
+              registration.scope
+            );
+
+            // if (registration.active) {
+            //     console.log("REGISTERED WORKER", CacheName);
+            // }
+            var isReloaded = false;
+            // Listen for messages from the service worker
+            navigator.serviceWorker.addEventListener("message", (event) => {
+              console.log("Received message from service worker:", event.data);
+              // Handle the message (callback) here
+              //alert(event.data.msg);
+              //const cacheSession = localStorage.getItem("cacheName");
+
+              //if(cacheSession !== CacheName){
+              // console.log("OLD CACHE SESSION", cacheSession);
+              // localStorage.removeItem("cacheName");
+              // localStorage.setItem("cacheName", event.data.version);
+              // console.log("EVENT DATA", event.data.version);
+              // console.log("NEW CACHE SESSION", CacheName);
+              //}
+
+              //sessionStorage.setItem("cacheName", CacheName);
+              isReloaded = true;
+              getData();
+            });
+
+            // Function to stop caching
+            function stopCaching() {
+              // if (navigator.serviceWorker.controller) {
+              //     navigator.serviceWorker.controller.postMessage({
+              //         type: 'UPDATE_CACHE_CONTROL',
+              //         shouldCache: false
+              //     });
+
+              // }
+              if (!isReloaded) {
+                getData();
+              }
+            }
+            // Example usage: stop caching after some process
+            someProcess().then(stopCaching);
+          })
+          .catch(function (error) {
+            InvokeBugsnagError(
+              "Internal",
+              "1002",
+              "Service Worker Error : " + error
+            );
+            console.log("Service Worker registration failed:", error);
+          });
+      }
+      // Example process after which caching should stop
+      function someProcess() {
+        return new Promise((resolve) => {
+          // Simulate a process with a timeout
+          setTimeout(resolve, 4000); // 5 seconds for demonstration
+        });
+      }
+    });
+
+    window.onload = function () {
+      //console.log("IS IOS APP " + isIOSApp);
+      //testUI.innerHTML = `${testUI.innerHTML}\n` + "IS IOS APP "+  isIOSApp;
+        if (/iPad|iPhone|iPod/.test(navigator.userAgent)) {
+             getData();
+             overlay.style.display = 'none';
+        //if ("ServiceWorker" in navigator) {
+        //  caches.keys().then(function (cacheNames) {
+        //    cacheNames
+        //      .map((cacheName) => {
+        //        if (cacheName !== CacheName) {
+        //          console.log("DELETE CACHES", cacheName);
+        //          return caches.delete(cacheName);
+        //        }
+        //      })
+        //      .then(() => {
+        //        return caches.open(CacheName).then((cache) => {
+        //          console.log("Opened cache");
+        //          return cache.addAll(contentToCache);
+        //        });
+        //      })
+        //      .then(() => {
+        //        console.log("IS IOS");
+        //        console.log("CURRENT VERSION: ", buildVersion);
+        //          getData();
+        //          overlay.style.display = 'none';
+        //        console.log("LOAD");
+        //      });
+        //  });
+        //} else {
+        //  console.log("IS IOS");
+        //  console.log("CURRENT VERSION: ", buildVersion);
+        //  getData();
+        //  console.log("LOAD");
+        //}
+      }
+    };
+</script>
+<script src="JS/resize.js"></script>
+</html>

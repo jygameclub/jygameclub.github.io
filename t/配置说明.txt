@@ -1,0 +1,9 @@
+JS/unityload.js   文件中  这个路径要替换一下 http://localhost:8081/
+
+ServiceWorker.js   
+修改下面的配置
+var assetBundleLink = "http://localhost:8081/tiger3/126/9game-astc";
+
+
+
+更新文件/   是本次修改的文件
