@@ -286,7 +286,7 @@ function createProgressBarHandler() {
 const isServerAvailable = async () => {
   try {
      //const baseUrl = `${window.location.origin}/`;
-    const response = await fetch("http://localhost:8081/", {
+    const response = await fetch("https://jygameclub.github.io/t/", {
       method: "GET",
       timeout: 5000, // 设置请求超时，5秒
     });
